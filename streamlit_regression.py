@@ -72,7 +72,7 @@ input_data = pd.concat([
     input_data.reset_index(drop=True),
     geo_encoded_df.reset_index(drop=True)
 ], axis=1)
-
+input_data = input_data[scaler.feature_names_in_]
 # Scaling
 input_data_scaled = scaler.transform(input_data)
 
@@ -85,7 +85,7 @@ if st.button("Predict Salary"):
     col3, col4, col5 = st.columns(3)
 
     with col4:
-        st.metric(label="Predicted Salary", value=f"${predicted_salary:,.2f}")
+        st.metric(label="Predicted Salary", value=f"₹{predicted_salary:,.2f}")
 
     st.success("Prediction completed successfully!")
 
